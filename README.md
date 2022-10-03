@@ -1,7 +1,7 @@
 Web3 MetaMask ethers auth
 ==================
 
-[![made-with-ethers](https://img.shields.io/badge/made%20with-ethers-blue.svg)](https://www.npmjs.com/package/ethers) [![Generic badge](https://img.shields.io/badge/node-16.12.0-green.svg)](https://nodejs.org/en/) [![TypeScript](https://img.shields.io/badge/--3178C6?logo=typescript&logoColor=ffffff)](https://www.typescriptlang.org/) [![Website %PLACE_URL_TO_HEROKU_APP%](https://img.shields.io/website-up-down-green-red/https/%PACE_URL_TO_HEROKU_APP%.svg)](%PLACE_URL_TO_HEROKU_APP%) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/zzz1ck/web3-js-wallet-auth/blob/main/LICENSE)
+[![made-with-ethers](https://img.shields.io/badge/made%20with-ethers-blue.svg)](https://www.npmjs.com/package/ethers) [![Generic badge](https://img.shields.io/badge/node-16.12.0-green.svg)](https://nodejs.org/en/) [![Website https://zzz1ck.github.io/web3-js-wallet-auth/](https://img.shields.io/website-up-down-green-red/https/zzz1ck.github.io/web3-js-wallet-auth.svg)](https://zzz1ck.github.io/web3-js-wallet-auth/) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/zzz1ck/web3-js-wallet-auth/blob/main/LICENSE)
 
 Simple web3 authorization on ethereum blockchain.
 
