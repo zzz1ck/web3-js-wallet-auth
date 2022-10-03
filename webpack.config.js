@@ -1,48 +1,34 @@
-const path = require("path");
-var webpack = require("webpack");
+const path = require('path');
+const wp = require('webpack');
 
 module.exports = {
   plugins: [
-    new webpack.ProvidePlugin({
-      React: "react",
+    new wp.ProvidePlugin({
+      React: 'react',
     }),
   ],
-  entry: ["babel-polyfill", path.resolve(__dirname, "src", "index.js")],
+  entry: path.join(__dirname, 'src/index.tsx'),
   output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js",
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
   },
+  resolve: { extensions: ['.tsx', '.ts', '.js'] },
   module: {
     rules: [
       {
-        test: /\.(jsx?)$/,
+        test: /\.[jt]sx?$/,
         exclude: /node_modules/,
-        use: [
-          {
-            loader: "babel-loader",
-            options: {
-              presets: [
-                [
-                  "@babel/preset-env",
-                  {
-                    targets: "defaults",
-                  },
-                ],
-                "@babel/preset-react",
-              ],
-            },
-          },
-        ],
-      },
-      {
-        test: /\.css$/i,
-        use: ["style-loader", "css-loader", "postcss-loader"],
+        loader: require.resolve('babel-loader'),
       },
     ],
   },
+  optimization: {
+    minimizer: [new (require('terser-webpack-plugin'))({ extractComments: false })],
+  },
   devServer: {
-    static: path.resolve(__dirname, "dist"),
-    open: true,
+    static: path.resolve(__dirname, 'dist'),
+    // @: if `true` - open new tab with app on start
+    open: false,
     port: 9000,
     hot: true,
   },

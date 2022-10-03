@@ -1,6 +1,5 @@
-todo
-__*
 node_modules
 dist/bundle*
 yarn-*
 .vscode
+TODO.*
