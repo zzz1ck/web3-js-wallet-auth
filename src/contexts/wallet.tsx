@@ -3,23 +3,18 @@ import React from 'react';
 interface WalletInterface {
   error: string;
   setError: (error: string) => void;
-  address: string;
-  setAddress: (address: string) => void;
   account: string;
   setAccount: (account: string) => void;
   balance: string;
   setBalance: (balance: string) => void;
   cleanup: () => void;
 }
-
-interface WalletProviderInterface {
-  children: React.ReactNode;
+interface WalletProviderInterface extends WithChildren {
   walletController: WalletInterface;
 }
 
 export const useWalletController = () => {
   const [error, setError] = React.useState<string>('');
-  const [address, setAddress] = React.useState<string>('');
   const [account, setAccount] = React.useState<string>('');
   const [balance, setBalance] = React.useState<string>('');
 
@@ -27,8 +22,6 @@ export const useWalletController = () => {
     () => ({
       error,
       setError,
-      address,
-      setAddress,
       account,
       setAccount,
       balance,
@@ -36,18 +29,16 @@ export const useWalletController = () => {
       cleanup: () => {
         setError('');
         setAccount('');
-        setAddress('');
         setBalance('');
       },
     }),
-    [error, setError, address, setAddress, account, setAccount, balance, setBalance]
+    [error, setError, account, setAccount, balance, setBalance]
   );
 
   return walletCtx;
 };
 
-export const Wallet =
-  React.createContext<WalletInterface | null>(null);
+export const Wallet = React.createContext({} as WalletInterface);
 
 export const WalletProvider = ({
   children,

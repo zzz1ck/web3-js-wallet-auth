@@ -1,4 +1,4 @@
-Web3 MetaMask ethers auth
+Wallet Authorization
 ==================
 
 [![made-with-ethers](https://img.shields.io/badge/made%20with-ethers-blue.svg)](https://www.npmjs.com/package/ethers) [![Generic badge](https://img.shields.io/badge/node-16.12.0-green.svg)](https://nodejs.org/en/) [![Website https://zzz1ck.github.io/web3-js-wallet-auth/](https://img.shields.io/website-up-down-green-red/https/zzz1ck.github.io/web3-js-wallet-auth.svg)](https://zzz1ck.github.io/web3-js-wallet-auth/) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/zzz1ck/web3-js-wallet-auth/blob/main/LICENSE)

@@ -1,28 +1,19 @@
-import { ExternalProvider } from '@ethersproject/providers/src.ts/web3-provider';
 import { ethers } from 'ethers';
 import { WALLET_ERRORS } from './constants';
 
-export type RequestType = { method: string };
 export type CaughtErrorType = { message: string } | any;
-export type WalletDetailsType = { address: string; balance: string };
 
 export class EthereumApi {
-  private readonly api: ExternalProvider;
   private readonly provider: ethers.providers.Web3Provider;
 
-  constructor() {
-    const { ethereum } = window;
-    this.api = ethereum;
+  constructor(ethereum: EthereumProvider) {
     this.provider = new ethers.providers.Web3Provider(ethereum);
   }
 
-  public async request(options: RequestType): Promise<[string]> {
+  public async send(method: string, options: []): Promise<string[]> {
     return new Promise(async (resolve, reject) => {
       try {
-        if (!this.api) {
-          throw new Error(WALLET_ERRORS.pleaseMakeSure);
-        }
-        const response = await this.api.request?.(options);
+        const response = await this.provider.send(method, options);
         resolve(response);
       } catch (error: CaughtErrorType) {
         reject(error?.message || WALLET_ERRORS.default);
@@ -30,13 +21,11 @@ export class EthereumApi {
     });
   }
 
-  public async getWalletDetails(): Promise<WalletDetailsType> {
+  public async getFormattedBalance(account: string): Promise<string> {
     return new Promise(async (resolve, reject) => {
       try {
-        const signer = this.provider.getSigner();
-        const addr = await signer.getAddress();
-        const balance = await this.provider.getBalance(addr);
-        resolve({ address: addr.toString(), balance: ethers.utils.formatEther(balance) });
+        const balance = await this.provider.getBalance(account);
+        resolve(ethers.utils.formatEther(balance));
       } catch (error: CaughtErrorType) {
         reject(error?.message || WALLET_ERRORS.default);
       }
