@@ -2,7 +2,8 @@ import React from 'react';
 import { ethers } from 'ethers';
 import { useWallet } from '../../contexts/wallet';
 import { EthereumApi } from '../../api/eth';
-import { Button, MetaMaskButton, Pulse, Sizes } from '../../components';
+import { Sizes } from '../../components/Button';
+import { Button, MetaMaskButton, Pulse } from '../../components';
 
 enum Sprites {
   'adventurer',
@@ -22,21 +23,15 @@ enum Sprites {
   'personas',
   'pixel-art',
   'pixel-art-neutral',
-};
+}
 
 const SPRITE_INDEX = Math.floor(Math.random() * (Object.keys(Sprites).length / 2));
 
-const WalletConnect = ({ ethereum }: { ethereum: EthereumProvider }) => {
+function WalletConnect({ ethereum }: { ethereum: EthereumProvider }) {
   const [processing, setProcessing] = React.useState(true);
   const ethereumApi = new EthereumApi(ethereum);
   const {
-    error,
-    setError,
-    account,
-    setAccount,
-    balance,
-    setBalance,
-    cleanup,
+    error, setError, account, setAccount, balance, setBalance, cleanup,
   } = useWallet();
 
   const fillCtxWithData = (accounts: string[]) => {
@@ -83,7 +78,9 @@ const WalletConnect = ({ ethereum }: { ethereum: EthereumProvider }) => {
           />
           <h3 tw="mb-1 text-xl font-medium text-gray-900 dark:text-white">
             <Pulse ready={Boolean(balance)} size={Sizes.MEDIUM}>
-              {balance || '0.0'} {ethers.constants.EtherSymbol}
+              {balance || '0.0'}
+              {' '}
+              {ethers.constants.EtherSymbol}
             </Pulse>
           </h3>
           <div tw="w-full text-center text-sm text-gray-500 dark:text-gray-400">{account}</div>
@@ -104,6 +101,6 @@ const WalletConnect = ({ ethereum }: { ethereum: EthereumProvider }) => {
       )}
     </>
   );
-};
+}
 
 export default React.memo(WalletConnect);

@@ -1,5 +1,5 @@
-export * from './Button';
-import MetaMaskButton from "./MetaMaskButton";
+import Button from './Button';
+import MetaMaskButton from './MetaMaskButton';
 import Pulse from './Pulse';
 
-export { MetaMaskButton, Pulse };
+export { Button, MetaMaskButton, Pulse };

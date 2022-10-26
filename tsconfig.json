@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
     "module": "ESNext",
-    "target": "es5",
+    "target": "ESNext",
     "moduleResolution": "node",
     "jsx": "preserve",
     "baseUrl": "./src",
-    "noEmit": true,
+    "outDir": "dist",
     "strict": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
@@ -16,11 +16,8 @@
     "isolatedModules": true,
     "esModuleInterop": true,
     "jsxImportSource": "@emotion/react",
-    "declaration": true,
-    "declarationDir": "./types",
-    "lib": ["es6", "dom"],
-    "sourceMap": true,
+    "typeRoots": ["node_modules/@types", "types"],
   },
-  "include": ["src/**/*", "types/*"],
-  "exclude": ["dist", "node_modules"],
+  "include": ["src", "types"],
+  "exclude": ["node_modules", "dist"]
 }

@@ -2,7 +2,7 @@ import WalletConnect from './views/WalletConnect';
 import { WALLET_ERRORS } from './api/eth/constants';
 import { WalletProvider, useWalletController } from './contexts/wallet';
 
-const App = () => {
+function App() {
   const walletController = useWalletController();
   return (
     <WalletProvider walletController={walletController}>
@@ -21,6 +21,6 @@ const App = () => {
       </div>
     </WalletProvider>
   );
-};
+}
 
 export default App;

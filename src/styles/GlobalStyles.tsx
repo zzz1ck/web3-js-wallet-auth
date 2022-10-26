@@ -9,11 +9,13 @@ const customStyles = {
   },
 };
 
-const GlobalStyles = () => (
-  <>
-    <BaseStyles />
-    <Global styles={customStyles} />
-  </>
-);
+function GlobalStyles() {
+  return (
+    <>
+      <BaseStyles />
+      <Global styles={customStyles} />
+    </>
+  );
+}
 
 export default React.memo(GlobalStyles);

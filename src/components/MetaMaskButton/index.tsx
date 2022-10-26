@@ -1,7 +1,8 @@
-import React from 'react';
+import { memo } from 'react';
 import tw from 'twin.macro';
 import Icon from './Icon';
-import { Button, ButtonProps, Sizes } from '..';
+import Button, { Sizes } from '../Button';
+import type { ButtonProps } from '../Button';
 
 const styledBySize = {
   [Sizes.SMALL]: tw`w-3 h-2.5`,
@@ -9,11 +10,13 @@ const styledBySize = {
   [Sizes.LARGE]: tw`w-10 h-8`,
 };
 
-const MetaMaskButton = ({ children, size = Sizes.MEDIUM, ...props }: ButtonProps) => (
-  <Button {...props}>
-    <Icon css={[styledBySize[size]]} />
-    {children}
-  </Button>
-);
+function MetaMaskButton({ children, size = Sizes.MEDIUM, ...props }: ButtonProps) {
+  return (
+    <Button {...props}>
+      <Icon css={[styledBySize[size]]} />
+      {children}
+    </Button>
+  );
+}
 
-export default React.memo(MetaMaskButton);
+export default memo(MetaMaskButton);
