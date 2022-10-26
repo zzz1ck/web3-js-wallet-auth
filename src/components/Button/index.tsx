@@ -1,4 +1,4 @@
-import React from 'react';
+import { memo, PropsWithChildren } from 'react';
 import tw from 'twin.macro';
 
 export enum Sizes {
@@ -6,7 +6,7 @@ export enum Sizes {
   MEDIUM,
   LARGE,
 }
-export interface ButtonProps extends WithChildren {
+export interface ButtonProps extends PropsWithChildren {
   onClick?: () => void;
   size?: Sizes;
 }
@@ -17,13 +17,22 @@ const styledBySize = {
   [Sizes.LARGE]: tw`font-medium px-6 py-4 rounded-lg`,
 };
 
-export const Button = React.memo(({ children, size = Sizes.MEDIUM, ...props }: ButtonProps) => (
-  <button
-    type="button"
-    tw="text-gray-900 bg-white hover:bg-gray-100 border border-gray-200 focus:(ring-4 ring-gray-100) text-center inline-flex items-center dark:(bg-gray-800 border-gray-700 text-white focus:ring-gray-600 hover:bg-gray-700)"
-    css={styledBySize[size]}
-    {...props}
-  >
-    {children}
-  </button>
-));
+function Button({ children, size = Sizes.MEDIUM, ...props }: ButtonProps) {
+  return (
+    <button
+      type="button"
+      tw="text-gray-900 bg-white hover:bg-gray-100 border border-gray-200 focus:(ring-4 ring-gray-100) text-center inline-flex items-center dark:(bg-gray-800 border-gray-700 text-white focus:ring-gray-600 hover:bg-gray-700)"
+      css={styledBySize[size]}
+      {...props}
+    >
+      {children}
+    </button>
+  );
+}
+
+Button.defaultProps = {
+  onClick: () => {},
+  size: Sizes.MEDIUM,
+};
+
+export default memo(Button);

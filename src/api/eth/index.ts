@@ -1,8 +1,6 @@
 import { ethers } from 'ethers';
 import { WALLET_ERRORS } from './constants';
 
-export type CaughtErrorType = { message: string } | any;
-
 export class EthereumApi {
   private readonly provider: ethers.providers.Web3Provider;
 
@@ -15,7 +13,8 @@ export class EthereumApi {
       try {
         const response = await this.provider.send(method, options);
         resolve(response);
-      } catch (error: CaughtErrorType) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } catch (error: any) {
         reject(error?.message || WALLET_ERRORS.default);
       }
     });
@@ -26,7 +25,8 @@ export class EthereumApi {
       try {
         const balance = await this.provider.getBalance(account);
         resolve(ethers.utils.formatEther(balance));
-      } catch (error: CaughtErrorType) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } catch (error: any) {
         reject(error?.message || WALLET_ERRORS.default);
       }
     });

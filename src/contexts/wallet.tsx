@@ -9,7 +9,7 @@ interface WalletInterface {
   setBalance: (balance: string) => void;
   cleanup: () => void;
 }
-interface WalletProviderInterface extends WithChildren {
+interface WalletProviderInterface extends React.PropsWithChildren {
   walletController: WalletInterface;
 }
 
@@ -32,7 +32,7 @@ export const useWalletController = () => {
         setBalance('');
       },
     }),
-    [error, setError, account, setAccount, balance, setBalance]
+    [error, setError, account, setAccount, balance, setBalance],
   );
 
   return walletCtx;
@@ -40,15 +40,13 @@ export const useWalletController = () => {
 
 export const Wallet = React.createContext({} as WalletInterface);
 
-export const WalletProvider = ({
+export function WalletProvider({
   children,
   walletController,
-}: WalletProviderInterface) => {
+}: WalletProviderInterface) {
   return (
     <Wallet.Provider value={walletController}>{children}</Wallet.Provider>
   );
-};
+}
 
-export const useWallet = () => {
-  return React.useContext(Wallet);
-};
+export const useWallet = () => React.useContext(Wallet);
